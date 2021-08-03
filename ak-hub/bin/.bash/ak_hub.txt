@@ -1,0 +1,56 @@
+#/bin/bash
+function ak_hub(){
+    if [ "$1" = update ];
+    then
+        if [ "$2" = -y ];
+        then
+        cd $akhub/bin/.bash/
+        bash .ak_update.sh -y
+        else
+        cd $akhub/bin/.bash/
+        bash .ak_update.sh
+        fi
+    elif [ "$1" = upgrade ];
+    then
+        if [ "$2" = -y ];
+        then
+        cd $akhub/bin/.bash/
+        bash .ak_upgrade.sh -y
+        else
+        cd $akhub/bin/.bash/
+        bash .ak_upgrade.sh
+        fi
+    elif [ "$1" = error ];
+    then
+        if [ "$2" = -fix ];
+        then
+        cd $akhub/bin/.bash/
+        bash .error.sh -fix
+        else
+        cd $akhub/bin/.bash/
+        bash .error.sh -fix
+        fi
+    fi
+}
+
+function myid(){
+    # user id
+    myid=$(sshd | whoami )
+    echo "Your id is : $myid"
+}
+function my(){
+    # ipv4 address of user
+    myipv4=$(ifconfig wlan0 | grep 'inet' | grep -v '::1' | grep -v '127.0.0.1' | awk NR==1'{print $2}')
+    # ipv6 address of user
+    myipv6=$(ifconfig | grep 'inet' | grep -v '::1' | grep -v '127.0.0.1' | awk NR==1'{print $2}')
+    # user id
+    myid=$(sshd | whoami )
+    echo "Your ipv4 address is : $myipv4"
+    echo "Your ipv6 address is : $myipv6"
+    echo "Your id is : $myid\""
+}
+function version(){
+  cd $akhub/.data/.version/
+    version=$(cat .v.txt )
+    echo "v$version"
+    }
