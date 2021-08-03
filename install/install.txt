@@ -6,5 +6,60 @@
 #          ##     ##   ##  ##              #
 #         ##       ##  ##   ##             #
 ############################################
+clear
+echo "Installing ak-hub"
+sleep 1
+echo "Please wait"
+sleep 2
+echo 
+echo "Hit:1 https://packages.akhub.org/hub/akhub-packages package InRelease"
+sleep 2
+echo "Hit:2 https://packages.akhub.org/hub/akhub-user user InRelease"
+sleep 2
+echo "Hit:3 https://packages.akhub.org/hub/ak-hub-packages package InRelease"
+sleep 3
+echo "Hit:4 https://packages.akhub.org/hub/ak-hub-user user InRelease"
+sleep 1
+echo "Fetched 267 kB in 5s (49.7 kB/s)"
+sleep 3
+echo "Reading package lists... Done"
+sleep 1
+echo "Building dependency tree... Done"
+sleep 2
+echo "Reading state information... Done"
+sleep 1
 
-echo "hellow world"
+# Set akhub as a locater of ak-hub
+akhub="$PREFIX/ak-hub"
+
+# Makeing folders in ak-hub
+cd $akhub
+mkdir .data
+mkdir .install
+mkdir bin
+mkdir etc
+mkdir uninstall
+
+# Adding files in .data folder
+  #
+  
+##############
+# Adding files in .install folder
+  #
+  
+###############
+# Adding files in bin folder
+  #
+  cd $akhub/bin/
+  mkdir .bash
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/bash.txt" -L -s -o "bash"
+  
+  cd $akhub/bin/.bash/
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/ak-hub.txt" -L -s -o ".ak-hub.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/ak_hub.txt" -L -s -o ".ak_hub.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/update.txt" -L -s -o ".update.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/upgrade.txt" -L -s -o ".upgrade.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/ak_update.txt" -L -s -o ".ak_update.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/ak_upgrade.txt" -L -s -o ".ak_upgrade.sh"
+  
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/akhub.txt" -L -s -o ".ak-hub.sh"
