@@ -1,0 +1,28 @@
+#/bash/bin
+# In this bash file fill in ak-hub update
+
+akhub="$PREFIX/ak-hub"
+
+function ak-hub(){
+    if [ "$1" = update ]
+    then
+      if [ "$2" = -y ]
+      then
+        cd $akhub/bin/.bash/
+        bash .update.sh -y
+      else
+        cd $akhub/bin/.bash/
+        bash .update.sh
+      fi
+    elif [ "$1" = upgrade]
+    then
+      if [ "$2" = -y ]
+      then
+        cd $akhub/bin/.bash/
+        bash .upgrade.sh -y
+      else
+        cd $akhub/bin/.bash/
+        bash .upgrade.sh
+      fi
+    fi
+    }
