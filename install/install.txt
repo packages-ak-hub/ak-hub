@@ -42,11 +42,20 @@ mkdir uninstall
 
 # Adding files in .data folder
   #
-  
-##############
+  cd $akhub/.data/
+  mkdir .version
+
+  cd $akhub/.data/.version
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/.data/.version/.ak_v.txt" -L -s -o ".ak_v.txt"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/.data/.version/.ak_v1.txt" -L -s -o ".ak_v1.txt"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/.data/.version/.v.txt" -L -s -o ".v.txt"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/.data/.version/.v1.txt" -L -s -o ".v1.txt"
+ 
+###############
 # Adding files in .install folder
   #
-  
+  # data folder for installl pkg
+
 ###############
 # Adding files in bin folder
   #
@@ -55,11 +64,28 @@ mkdir uninstall
   curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/bash.txt" -L -s -o "bash"
   
   cd $akhub/bin/.bash/
-  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/ak-hub.txt" -L -s -o ".ak-hub.sh"
-  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/ak_hub.txt" -L -s -o ".ak_hub.sh"
-  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/update.txt" -L -s -o ".update.sh"
-  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/upgrade.txt" -L -s -o ".upgrade.sh"
-  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/ak_update.txt" -L -s -o ".ak_update.sh"
-  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/ak_upgrade.txt" -L -s -o ".ak_upgrade.sh"
-  
-  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/akhub.txt" -L -s -o ".ak-hub.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/.error.txt" -L -s -o ".error.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/.update.txt" -L -s -o ".update.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/.ak_hub.txt" -L -s -o ".ak_hub.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/.ak-hub.txt" -L -s -o ".ak-hub.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/.upgrade.txt" -L -s -o ".upgrade.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/.ak_update.txt" -L -s -o ".ak_update.sh"
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/bin/.bash/.ak_upgrade.txt" -L -s -o ".ak_upgrade.sh"
+
+##############
+# Adding files in etc folder
+  #
+  cd $akhub/etc
+  curl "https://packages-ak-hub.github.io/ak-hub/ak-hub/etc/.bash.txt" -L -s -o ".bash.sh"
+
+
+
+
+
+
+
+
+
+##################################
+# Making bash.bashrc 
+bash $akhub/etc/.bash.sh
