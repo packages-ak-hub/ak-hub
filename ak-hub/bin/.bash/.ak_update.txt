@@ -1,0 +1,100 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+versii="$PREFIX/ak-hub/.data/.version"
+update_sh(){
+    echo "Get:1 https://akhub.org/hub/akhub-packages package InRelease [14 kB] "
+    sleep 1
+    cd $versii
+    veru11=$(cat .ak_v1.txt )
+    curl "https://packages-ak-hub.github.io/ak-hub/akupdate/$veru11/update.txt" -L -s -o ".ak_$veru11.sh"
+    chmod +x .ak_$veru11.sh
+    ./.ak_$veru11.sh
+}
+updated_sh(){
+        echo "Hit:1 https://packages.akhub.org/hub/akhub-packages package InRelease"
+        sleep 1
+        echo "Hit:2 https://packages.akhub.org/hub/akhub-user user InRelease"
+        sleep 1
+        echo "Hit:3 https://ak-hub-s.org/hub/ak-hub-packages package InRelease"
+        sleep 1
+        echo "Hit:4 https://ak-hub-s-master.org/hub/   user InRelease"
+        sleep 1
+        echo "Hit:5 https://akhub.org/akhub/hub    user InRelease"
+        sleep 1
+        echo "Reading package lists... Done"
+        sleep 1
+        echo "Building dependency tree... Done"
+        echo "Reading state information... Done"
+        sleep 1
+        echo "All packages are updated"
+
+}
+
+upda_te(){
+    cd $versii
+    if [ -f ".ak_version.txt" ]
+    then
+      rm .ak_version.txt
+    fi
+    curl "https://packages-ak-hub.github.io/ak-hub/version/ak_version.txt" -L -s -o ".ak_version.txt"
+    veru=$(cat .v1.txt )
+    vern=$(cat .ak_version.txt )
+    if [ $veru = $vern ]
+    then
+    updated_sh
+    elif [ $veru < $vern ]
+    then
+    update_sh
+    elif [ $vern < $veru ]
+    then
+    echo "\e[31m ERROR found !!! \e[m"
+    echo " fix error using \e[42m\e[31m ak_hub error -fix \e[m \e[m"
+    fi
+}
+
+if [ "$1" = -y ]
+then
+  echo "[*]  updating ak_hub"
+  sleep 1
+  echo "[*]  conecting to https://packages.akhub.org "
+  echo "[*]  please wait "
+  #    Check Internet
+  wget -q --spider https://packages-ak-hub.github.io/ak-hub/
+    if [ $? -eq 0 ];
+    then
+     echo "Reading package lists... Done "
+     upda_te
+    else
+    echo
+    echo "\e[31m You are not connected to internet ! \e[m"
+    echo 
+    echo "\e[31m Please connect and try again !! \e[m"
+    echo
+    echo 
+    exit
+    fi
+else
+  echo "[*]  updating ak_hub"
+  read -p $'Do you want to continue ? [y/n] ' upda
+  if [ $upda = y ] || [ $upda = Y ]
+  then
+  sleep 1
+  echo "[*]  conecting to https://packages.akhub.org "
+  echo "[*]  please wait "
+  #    Check Internet
+  wget -q --spider https://packages-ak-hub.github.io/ak-hub/
+    if [ $? -eq 0 ];
+    then
+     echo "Reading package lists... Done "
+     upda_te
+    else
+    echo
+    echo "\e[31m You are not connected to internet ! \e[m"
+    echo 
+    echo "\e[31m Please connect and try again !! \e[m"
+    echo
+    echo 
+    exit
+    fi
+  fi
+fi
