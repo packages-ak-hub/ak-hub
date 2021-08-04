@@ -1,0 +1,8 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+if [ "$1" = -y ]
+then
+ak-hub update -Y
+else
+ak-hub update
+fi
