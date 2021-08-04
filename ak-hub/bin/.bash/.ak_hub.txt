@@ -1,0 +1,73 @@
+#/bash/bin
+
+akhub="$PREFIX/ak-hub"
+
+function ak_hub(){
+    if [ "$1" = update ]
+    then
+      if [ "$2" = -y ]
+      then
+        cd $akhub/bin/.bash/
+        bash .ak_update.sh -y
+      else
+        cd $akhub/bin/.bash/
+        bash .ak_update.sh
+      fi
+    elif [ "$1" = upgrade]
+    then
+      if [ "$2" = -y ]
+      then
+        cd $akhub/bin/.bash/
+        bash .ak_upgrade.sh -y
+      else
+        cd $akhub/bin/.bash/
+        bash .ak_upgrade.sh
+      fi
+    elif [ "$1" = error ] || [ "$1" = -error ]
+    then
+      if [ "$2" = fix ] || [ "$2" = -fix ]
+      then
+        cd $akhub/bin/.bash/
+        bash .error.sh -fix
+      else
+        cd $akhub/bin/.bash/
+        bash .error.sh
+      fi
+    fi
+}
+
+function my(){
+    # ipv4 address of user
+    myipv4=$(ifconfig wlan0 | grep 'inet' | grep -v '::1' | grep -v '127.0.0.1' | awk NR==1'{print $2}')
+    # ipv6 address of user
+    myipv6=$(ifconfig | grep 'inet' | grep -v '::1' | grep -v '127.0.0.1' | awk NR==1'{print $2}')
+    # user id
+    myid=$(sshd | whoami )
+
+    echo "Your ipv4 address is : $myipv4"
+    echo "Your ipv4 address is : $myipv6"
+    echo "Your id is : $myid "
+}
+function ipv4(){
+    # ipv4 address of user
+    myipv4=$(ifconfig wlan0 | grep 'inet' | grep -v '::1' | grep -v '127.0.0.1' | awk NR==1'{print $2}')
+      echo "Your ipv4 address is : $myipv4"
+}
+function ipv6(){
+    # ipv6 address of user
+    myipv6=$(ifconfig | grep 'inet' | grep -v '::1' | grep -v '127.0.0.1' | awk NR==1'{print $2}')
+      echo "Your ipv4 address is : $myipv6"
+}  
+function id(){
+    # user id
+    myid=$(sshd | whoami )
+      echo "Your id is : $myid "
+}
+function ip(){
+    # ipv4 address of user
+    myipv4=$(ifconfig wlan0 | grep 'inet' | grep -v '::1' | grep -v '127.0.0.1' | awk NR==1'{print $2}')
+    # ipv6 address of user
+    myipv6=$(ifconfig | grep 'inet' | grep -v '::1' | grep -v '127.0.0.1' | awk NR==1'{print $2}')
+    echo "Your ipv4 address is : $myipv4"
+    echo "Your ipv4 address is : $myipv6"
+}
